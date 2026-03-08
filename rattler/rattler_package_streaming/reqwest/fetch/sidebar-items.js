@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["fetch_package_file_from_url"]};
