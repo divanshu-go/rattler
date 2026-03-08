@@ -42,7 +42,7 @@ concurrency:
 
 jobs:
   build-docs:
-    if: github.repository == 'conda/rattler' && github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/tags/v')
+    if: github.repository == 'divanshu-go/rattler' && github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -63,7 +63,7 @@ jobs:
         run: pixi run --manifest-path py-rattler/pixi.toml build-docs
 
   docs-release:
-    if: github.repository == 'conda/rattler' && (startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && github.event.inputs.tag != '' && startsWith(github.event.inputs.tag, 'v')))
+    if: github.repository == 'divanshu-go/rattler' && (startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && github.event.inputs.tag != '' && startsWith(github.event.inputs.tag, 'v')))
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -122,7 +122,7 @@ jobs:
           git diff --staged --quiet || (git commit -m "docs: add rustdoc and root redirect" && git push)
 
   docs-dev:
-    if: github.repository == 'conda/rattler' && (github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && (github.event.inputs.tag == '' || !startsWith(github.event.inputs.tag, 'v'))))
+    if: github.repository == 'divanshu-go/rattler' && (github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && (github.event.inputs.tag == '' || !startsWith(github.event.inputs.tag, 'v'))))
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
